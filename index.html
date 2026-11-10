@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Creator · Champs Companion</title>
+<meta name="description" content="Independent developer of Champs Companion and other free apps. Support development.">
+<meta name="theme-color" content="#182338">
+<link rel="icon" href="assets/champs-icon.png">
+<style>
+:root{--bg:#F2F4F7;--card:#fff;--ink:#182338;--sub:#5B6B85;--line:#DCE1E9;--gold:#D4A72C;--goldInk:#8A6D00;--goldSoft:#FBF3DC;--head:#182338}
+@media (prefers-color-scheme:dark){:root{--bg:#10161F;--card:#1A2230;--ink:#E8EDF5;--sub:#8C9BB5;--line:#2A3547;--gold:#E0B33D;--goldInk:#E8C86A;--goldSoft:#2A2717;--head:#0B1017}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font:15px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);
+  background:radial-gradient(900px 420px at 50% -8%,var(--goldSoft),transparent 70%),var(--bg);min-height:100vh}
+main{max-width:640px;margin:0 auto;padding:28px 16px 40px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;margin-bottom:14px;box-shadow:0 1px 3px rgba(24,35,56,.07)}
+.hero{background:linear-gradient(135deg,var(--head) 55%,#D4A72C55 170%);color:#fff;border:none;text-align:center;padding:26px 18px}
+.avatar{width:84px;height:84px;border-radius:42px;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,#FCD66E,#C99A2E);color:#182338;font-weight:900;font-size:36px;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+h1{margin:4px 0 2px;font-size:26px;letter-spacing:.02em}
+.tag{color:#C9D3E4;font-size:14px;margin:0}
+.bio{color:#E3E9F3;font-size:14px;margin:12px auto 0;max-width:460px}
+.label{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--sub);margin:0 0 10px}
+.label:before{content:"";width:12px;height:3px;border-radius:2px;background:linear-gradient(90deg,var(--gold),#F5C84C)}
+.btns{display:grid;gap:10px}
+a.btn{display:flex;align-items:center;justify-content:space-between;gap:10px;text-decoration:none;color:var(--ink);background:var(--card);
+  border:1px solid var(--line);border-radius:14px;padding:13px 14px;font-weight:700;transition:transform .12s,border-color .2s}
+a.btn:hover,a.btn:focus-visible{border-color:var(--gold);outline:none}
+a.btn:active{transform:scale(.98)}
+a.btn.primary{background:linear-gradient(135deg,#F5C84C,#D4A72C);color:#182338;border:none}
+.fee{font-size:11px;font-weight:700;color:var(--goldInk);background:var(--goldSoft);border-radius:999px;padding:2px 8px;white-space:nowrap}
+a.btn.primary .fee{background:rgba(24,35,56,.12);color:#182338}
+.note{font-size:12px;color:var(--sub);margin:10px 0 0}
+.support-copy{font-size:14px;color:var(--sub);margin:0 0 12px}
+.proj{display:flex;gap:12px;align-items:flex-start}
+.proj img,.proj .ph{width:52px;height:52px;border-radius:14px;flex-shrink:0;background:var(--goldSoft)}
+.proj h3{margin:0;font-size:16px}
+.proj p{margin:3px 0 8px;font-size:13px;color:var(--sub)}
+.links{display:flex;flex-wrap:wrap;gap:6px}
+.links a{font-size:12px;font-weight:700;color:var(--goldInk);background:var(--goldSoft);border-radius:999px;padding:4px 10px;text-decoration:none}
+.socials{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-top:14px}
+.socials a{color:#fff;font-size:13px;font-weight:700;text-decoration:none;border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:4px 12px}
+footer{text-align:center;font-size:11px;color:var(--sub);line-height:1.6;padding:8px}
+footer a{color:var(--sub)}
+</style>
+</head>
+<body>
+<main id="app">
+  <noscript><div class="card">This page needs JavaScript to show its links.</div></noscript>
+</main>
+<script src="config.js"></script>
+<script>
+(function () {
+  var C = window.CREATOR || {};
+  var S = C.support || {};
+  var esc = function (s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); };
+  var user = function (s) { return encodeURIComponent(String(s || "").trim().replace(/^@/, "")); };
+  // Only https links or same-site relative paths are ever rendered.
+  var safe = function (u) { u = String(u || "").trim(); return /^https:\/\//i.test(u) || (/^[a-z0-9][\w\-\/.#]*$/i.test(u) && !/^[a-z]+:/i.test(u)) ? u : ""; };
+  var ext = function (u) { return /^https:/i.test(u) ? ' target="_blank" rel="noopener noreferrer"' : ""; };
+
+  var opts = [];
+  if (S.githubSponsors) opts.push({ label: "GitHub Sponsors", url: "https://github.com/sponsors/" + user(S.githubSponsors), fee: "0% platform fee", primary: true });
+  if (S.kofi) opts.push({ label: "Ko-fi", url: "https://ko-fi.com/" + user(S.kofi), fee: "0% fee on one-time tips", primary: !S.githubSponsors });
+  if (S.buyMeACoffee) opts.push({ label: "Buy Me a Coffee", url: "https://buymeacoffee.com/" + user(S.buyMeACoffee), fee: "" });
+  if (S.paypalMe) opts.push({ label: "PayPal", url: "https://paypal.me/" + user(S.paypalMe), fee: "" });
+
+  var initial = esc((C.name || "?").trim().charAt(0).toUpperCase());
+  var socials = (C.socials || []).filter(function (s) { return safe(s.url); })
+    .map(function (s) { return '<a href="' + esc(safe(s.url)) + '"' + ext(safe(s.url)) + ">" + esc(s.label) + "</a>"; }).join("");
+
+  var html = "";
+  html += '<section class="card hero"><div class="avatar" aria-hidden="true">' + initial + "</div>"
+       + "<h1>" + esc(C.name || "Creator") + "</h1>"
+       + (C.tagline ? '<p class="tag">' + esc(C.tagline) + "</p>" : "")
+       + (C.bio ? '<p class="bio">' + esc(C.bio) + "</p>" : "")
+       + (socials ? '<div class="socials">' + socials + "</div>" : "") + "</section>";
+
+  html += '<section class="card" id="support"><h2 class="label">Support my work</h2>';
+  if (opts.length) {
+    html += '<p class="support-copy">My apps are free and stay free. If one has helped you, you can chip in below. It\'s completely optional and keeps the data updated every regulation.</p><div class="btns">'
+         + opts.map(function (o) { return '<a class="btn' + (o.primary ? " primary" : "") + '" href="' + esc(o.url) + '" target="_blank" rel="noopener noreferrer">'
+           + "<span>" + esc(o.label) + " ♥</span>" + (o.fee ? '<span class="fee">' + esc(o.fee) + "</span>" : "") + "</a>"; }).join("")
+         + '</div><p class="note">Payments are handled by the platform you pick; this site never sees your payment details. Payment processing fees may apply.</p>';
+  } else {
+    html += '<p class="support-copy">Support options are coming soon. Thanks for using my apps!</p>';
+  }
+  html += "</section>";
+
+  var projects = (C.projects || []).map(function (p) {
+    var links = (p.links || []).filter(function (l) { return safe(l.url); })
+      .map(function (l) { return '<a href="' + esc(safe(l.url)) + '"' + ext(safe(l.url)) + ">" + esc(l.label) + "</a>"; }).join("");
+    return '<div class="proj">' + (p.icon ? '<img src="' + esc(safe(p.icon)) + '" alt="">' : '<div class="ph"></div>')
+      + "<div><h3>" + esc(p.name) + "</h3>" + (p.description ? "<p>" + esc(p.description) + "</p>" : "")
+      + (links ? '<div class="links">' + links + "</div>" : "") + "</div></div>";
+  }).join('<hr style="border:none;border-top:1px solid var(--line);margin:14px 0">');
+  if (projects) html += '<section class="card"><h2 class="label">Projects</h2>' + projects + "</section>";
+
+  var email = String(C.contactEmail || "").trim();
+  html += "<footer>" + (/^[^\s@]+@[^\s@]+$/.test(email) ? 'Contact: <a href="mailto:' + esc(email) + '">' + esc(email) + "</a><br>" : "")
+       + "Champs Companion is an unofficial fan-made app, not affiliated with Nintendo, Game Freak, Creatures or The Pokémon Company.<br>© "
+       + new Date().getFullYear() + " " + esc(C.name || "") + "</footer>";
+
+  document.getElementById("app").innerHTML = html;
+  if (location.hash === "#support") { var el = document.getElementById("support"); if (el) el.scrollIntoView(); }
+})();
+</script>
+</body>
+</html>
