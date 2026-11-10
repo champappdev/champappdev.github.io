@@ -10,7 +10,7 @@ window.CREATOR = {
   // Usernames only (not full links). Set the ones you use; empty ones are hidden.
   support: {
     githubSponsors: "",   // github.com/sponsors/<this>   — 0% fee on personal sponsorships
-    kofi: "",             // ko-fi.com/<this>             — 0% fee on one-time tips
+    kofi: "champappdev",  // ko-fi.com/<this>             — 0% fee on one-time tips
     buyMeACoffee: "",     // buymeacoffee.com/<this>      — 5% fee
     paypalMe: "",         // paypal.me/<this>             — PayPal's standard fees
   },
